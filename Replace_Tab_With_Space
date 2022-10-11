@@ -1,0 +1,51 @@
+#include <stdio.h>
+
+#define Max 100
+#define tabstop 5
+
+int getline2(char output[]);
+
+int main()
+{
+
+    char outputstring[Max];
+
+    while(getline2(outputstring) > 0)
+    {
+        printf("%s\n", outputstring);
+    }
+
+    return 0;
+}
+
+int getline2(char s[]) //getline AND replace tabs with spaces up to every multiple of 5
+{
+    int c, i;
+
+    for(i = 0; (c = getchar()) != EOF && c != '\n'; i++)
+    {
+        if(c == '\t')
+        {
+            c = ' ';
+
+            int stop = i;
+
+            while (stop > 0)
+            stop = stop - tabstop;
+            stop = stop * (-1) +i;
+
+            for (i; i < stop ; ++i)
+            {
+                s[i] = c;
+            }
+            
+        }
+     
+        else
+        s[i] = c;
+
+    }
+    
+    s[i] = '\0';
+    return i;
+}
